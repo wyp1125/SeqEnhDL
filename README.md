@@ -1,2 +1,2 @@
 # enhancer-prediction
-Multiple machine learning and deep learning models for enhancer prediction
+Multiple machine learning and deep learning models for sequence-based enhancer prediction
