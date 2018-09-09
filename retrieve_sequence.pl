@@ -1,0 +1,70 @@
+#!/usr/local/bin/perl
+if($#ARGV<1)
+{
+print "Usage: chrom_dir chrom_pos output\n";
+exit;
+}
+$seq_dir=$ARGV[0];
+$x=0;
+%s=();
+for($i=1;$i<=24;$i++)
+{
+$fl_name="chr$i";
+if($i==23)
+{
+$fl_name="chrX";
+}
+if($i==24)
+{
+$fl_name="chrY";
+}
+$dir="$seq_dir/$fl_name\.fa";
+print $dir,"\n";
+open(input,$dir);
+$line=<input>;
+$s{$fl_name}=$x;
+while($line=<input>)
+{
+chomp($line);
+if($line ne "")
+{
+$seq[$x]=$line;
+$x++;
+}
+}
+}
+open(input,"$ARGV[1]");
+open(output,">$ARGV[2]");
+while($line=<input>)
+{
+chomp($line);
+if($line eq "")
+{
+next;
+}
+@a=split("\t",$line);
+if($a[2]-$a[1]>=0)
+{
+$good=1;
+$tmp=$a[0];
+$s_ln=int(($a[1]-1)/50);
+$s_ps=($a[1]-1)%50;
+$e_ln=int(($a[2]-1)/50);
+$e_ps=($a[2]-1)%50;
+if($s_ln==$e_ln)
+{
+$o_seq=substr($seq[$s{$tmp}+$s_ln],$s_ps,$e_ps-$s_ps+1);
+}
+else
+{
+$o_seq=substr($seq[$s{$tmp}+$s_ln],$s_ps,50-$s_ps);
+for($i=$s_ln+1;$i<$e_ln;$i++)
+{
+$o_seq=$o_seq.$seq[$s{$tmp}+$i];
+}
+$o_seq=$o_seq.substr($seq[$s{$tmp}+$e_ln],0,1+$e_ps);
+}
+print output ">hg19\:$a[0]\:$a[1]-$a[2]\n";
+print output $o_seq,"\n";
+}
+}
