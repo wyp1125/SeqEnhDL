@@ -3,18 +3,24 @@ import tensorflow as tf
 from tensorflow.contrib import rnn
 import numpy as np
 import dataset
-import sys
+import os,sys
+import argparse
 
-if len(sys.argv)<2:
-    print("python3 rnn_enh_pred.py pos_pred_path neg_pred_path")
-    quit()
+parser = argparse.ArgumentParser(description='Process input files and parameters.')
+parser.add_argument('-p1', '--pos_pred', type=str, required=True, help="positive prediction set")
+parser.add_argument('-p2', '--neg_pred', type=str, required=True, help="negative prediction set")
+parser.add_argument('-m', '--model', type=str, required=True, help="path of saved model ('.meta' file)")
+parser.add_argument('-o', '--outfile', type=str, required=True, help="output file")
+args = parser.parse_args()
 
 #Load the configuration file to get basic paramters
-data = dataset.read_pred_sets(sys.argv[1], sys.argv[2])
+data = dataset.read_pred_sets(args.pos_pred, args.neg_pred)
 print(len(data.pred.labels))
 sess = tf.Session()
-saver = tf.train.import_meta_graph('rnn_model/rnn.enhancer.meta')
-saver.restore(sess, tf.train.latest_checkpoint('rnn_model/'))
+saver = tf.train.import_meta_graph(args.model)
+modeldir=os.path.dirname(args.model)+'/'
+#saver.restore(sess, tf.train.latest_checkpoint("model/"))
+saver.restore(sess, tf.train.latest_checkpoint(modeldir))
 graph = tf.get_default_graph()
 
 #for op in graph.get_operations():
@@ -26,7 +32,7 @@ feed_dict_testing = {x: data.pred.seqs, y_true: data.pred.labels}
 result=sess.run(y_pred, feed_dict=feed_dict_testing)
 
 # Output the predictions
-with open(sys.argv[3],'w') as of:
+with open(args.outfile,'w') as of:
     i=0
     for row in result:
         c=0

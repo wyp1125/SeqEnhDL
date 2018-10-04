@@ -4,20 +4,39 @@ from tensorflow.contrib import rnn
 import numpy as np
 import dataset
 import sys
+import argparse
 
-if len(sys.argv)<3:
-    print("pos_path neg_path pos_path_pred neg_path_pred")
-    quit()
-data = dataset.read_train_sets(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+parser = argparse.ArgumentParser(description='Process input files and parameters.')
+parser.add_argument('-t1', '--pos_trn', type=str, required=True, help="positive training set")
+parser.add_argument('-t2', '--neg_trn', type=str, required=True, help="negative training set")
+parser.add_argument('-p1', '--pos_pred', type=str, required=True, help="positive prediction set")
+parser.add_argument('-p2', '--neg_pred', type=str, required=True, help="negative prediction set")
+parser.add_argument('-m', '--model', type=str, required=True, help="path of saved model (folder + prefix)")
+parser.add_argument('-r', '--rate', type=float, required=False, help="learning rate")
+parser.add_argument('-s', '--steps', type=int, required=False, help="number of steps")
+parser.add_argument('-b', '--batch_size', type=int, required=False, help="batch size")
+parser.add_argument('-d', '--display_step', type=int, required=False, help="display_step")
+
+args = parser.parse_args()
+data = dataset.read_train_sets(args.pos_trn, args.neg_trn, args.pos_pred, args.neg_pred)
 print(len(data.train.labels))
 print(len(data.valid.labels))
 
 # Training Parameters
 learning_rate = 0.001
-training_steps = 3000
+if args.rate:
+    learning_rate=args.rate
+training_steps = 4000
+if args.steps:
+    training_steps=args.steps
 batch_size = 512
+if args.batch_size:
+    batch_size=args.batch_size
 display_step = 200
+if args.display_step:
+    display_step=args.display_step
 
+#quit()
 # Network Parameters
 num_input = 4 # number of features at each nt
 timesteps = 200 # timesteps
@@ -99,5 +118,5 @@ with tf.Session() as sess:
             print("Step " + str(step) + ", Minibatch Loss= " + \
                   "{:.4f}".format(loss) + ", Training Accuracy= " + \
                   "{:.3f}".format(acc))
-    saver.save(sess, "/home/yupeng/bdx/enhancer/models/rnn_model/rnn.enhancer") 
+    saver.save(sess, args.model) 
 
