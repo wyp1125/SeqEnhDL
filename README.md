@@ -45,4 +45,7 @@ Post-analysis tools
 1) compute_roc.py
 Compute points of roc curves from a prediction file
 2) visualize.py
-Visualize roc curves    
+Visualize roc curves
+
+Testing data
+Testing data can be download from http://www.bdxconsult.com/enhancer.html   
