@@ -1,5 +1,7 @@
 # enhancer-prediction
-Multiple machine learning and deep learning models for sequence-based enhancer prediction
+Multiple machine learning and deep learning models for kmer-based enhancer prediction. The package includes the following scripts:
+
+Data processing tools:
 1) mask_seq.pl
 Mask DNA sequences: repeat sequences by 'N's, and other masked sequences by 'X's.
 2) paral_mask_seq_hepg2.pl
@@ -26,3 +28,21 @@ Divide deep learning positive and negative (size could be several folds) feature
 Convert deep learning features to SVM features (flattened)
 13) make_all_svm_fea.pl
 Wrapper for implementing make_svm_fea.pl
+14) random_selection.py
+Randomly select a pre-defined proportion of rows from a file 
+
+Enhancer identifiers
+1) rnn_enhancer.py
+Train an RNN model of enhancer identifier
+2) rnn_enh_pred.py
+Predict enhancers using an established RNN model
+3) multi_ml_enhancer.py
+Train enhancer identifiers of multiple machine learning models
+4) linearSVM_enhancer.py
+Train a linear SVM enhancer identifier and make predictions
+
+Post-analysis tools
+1) compute_roc.py
+Compute points of roc curves from a prediction file
+2) visualize.py
+Visualize roc curves    
