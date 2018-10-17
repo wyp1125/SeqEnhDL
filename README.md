@@ -2,7 +2,7 @@
 Multiple machine learning and deep learning models for kmer-based enhancer prediction. The package includes the following scripts:
 
 ### Data processing tools:
-1) mask_seq.pl
+1) **mask_seq.pl**
 Mask DNA sequences: repeat sequences by 'N's, and other masked sequences by 'X's.
 2) paral_mask_seq_hepg2.pl
 Mask Hepg2 strong enhancer sequences from the human genome.
