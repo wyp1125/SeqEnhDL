@@ -3,7 +3,7 @@ Multiple machine learning and deep learning models for kmer-based enhancer predi
 
 ### Data processing tools:
 1) **mask_seq.pl**
-Mask DNA sequences: repeat sequences by 'N's, and other masked sequences by 'X's.
+Mask DNA sequences - repeat sequences by 'N's, and other masked sequences by 'X's.
 2) **paral_mask_seq_hepg2.pl**
 Mask Hepg2 strong enhancer sequences from the human genome.
 3) **paral_mask_seq_gm12878.pl**
@@ -32,26 +32,26 @@ Wrapper for implementing make_svm_fea.pl
 Randomly select a pre-defined proportion of rows from a file 
 
 ### Enhancer prediction models
-1) rnn_enhancer.py
+1) **rnn_enhancer.py**
 Train an RNN model of enhancer identifier
-2) rnn_enh_pred.py
+2) **rnn_enh_pred.py**
 Predict enhancers using an established RNN model
-3) multi_ml_enhancer.py
+3) **multi_ml_enhancer.py**
 Train enhancer identifiers of multiple machine learning models
-4) linearSVM_enhancer.py
+4) **linearSVM_enhancer.py**
 Train a linear SVM enhancer identifier and make predictions
 
 ### Post-analysis tools
-1) compute_roc.py
+1) **compute_roc.py**
 Compute points of roc curves from a prediction file
-2) visualize.py
+2) **visualize.py**
 Visualize roc curves
 
 ### Testing data
 Testing data can be download from http://www.bdxconsult.com/enhancer.html
 
 ### Input data format
-1) RNN models
+1) **RNN models**
 Data files are tab delimited. Training and testing data should be in separate files and postive and negtive data should be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window. For example,
 ```
 enh_1    5mer_fold_change_nt1    5mer_fold_change_nt2    ...    5mer_fold_chang_nt200
@@ -63,7 +63,7 @@ ehn_2    7mer_fold_change_nt2    7mer_fold_change_nt2    ...    7mer_fold_change
 enh_2    9mer_fold_change_nt1    9mer_fold_change_nt2    ...    9mer_fold_chang_nt200
 ehn_2    11mer_fold_change_nt2    11mer_fold_change_nt2    ...    11mer_fold_change_nt200
 ```
-2) SVM and other ML models
+2) **SVM and other ML models**
 Data files are tab delimited. Training and testing data should be in separate files, but positive and negative data should be combined. The features of each enhancer/control have only one row.  The first column is 'class', where 0 indicates non-enhancer and 1 indicates enhancer. The subsequent columns contain the fold changes of Kmer at each nucleotide positon of the 200bp window in the order of 5mer, 7mer, 9mer and 11mer.
 
 ### Usage
