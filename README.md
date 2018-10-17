@@ -66,8 +66,8 @@ ehn_2    11mer_fold_change_nt2    11mer_fold_change_nt2    ...    11mer_fold_cha
 2) **SVM and other ML models**
 Data files are tab delimited. Training and testing data should be in separate files, but positive and negative data should be combined. The features of each enhancer/control have only one row.  The first column is 'class', where 0 indicates non-enhancer and 1 indicates enhancer. The subsequent columns contain the fold changes of Kmer at each nucleotide positon of the 200bp window in the order of 5mer, 7mer, 9mer and 11mer. For example,
 ```
-1    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
-0    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
+1    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    7mer_fold_change_nt1    ...    7mer_fold_change_nt200    ...    9mer_fold_change_nt1    ...    9mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
+0    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    7mer_fold_change_nt1    ...    7mer_fold_change_nt200    ...    9mer_fold_change_nt1    ...    9mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
 ```
 
 ### Usage
