@@ -55,7 +55,9 @@ Input data format
 Data files are tab delimited. Training and testing data should be in separate files and postive and negtive data should be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window. For example,
 
 enh_1    5mer_fold_change_nt1    5mer_fold_change_nt2    ...    5mer_fold_chang_nt200
+
 ehn_1    7mer_fold_change_nt2    7mer_fold_change_nt2    ...    7mer_fold_change_nt200
+
 enh_1    9mer_fold_change_nt1    9mer_fold_change_nt2    ...    9mer_fold_chang_nt200
 
 ehn_1    11mer_fold_change_nt2    11mer_fold_change_nt2    ...    11mer_fold_change_nt200
