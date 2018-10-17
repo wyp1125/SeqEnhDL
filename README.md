@@ -1,5 +1,5 @@
 # enhancer-prediction
-Multiple machine learning and deep learning models for kmer-based enhancer prediction. Usage of each program can be displayed by typing a command line without any option.
+Multiple machine learning and deep learning models for kmer-based enhancer prediction. Usage of each program (excluding wrapper scripts) can be displayed by typing a command line without any option.
 
 ### Data processing tools:
 1) **mask_seq.pl**
