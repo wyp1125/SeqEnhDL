@@ -31,7 +31,7 @@ Wrapper for implementing make_svm_fea.pl
 14) random_selection.py
 Randomly select a pre-defined proportion of rows from a file 
 
-Enhancer identifiers
+Enhancer prediction models
 1) rnn_enhancer.py
 Train an RNN model of enhancer identifier
 2) rnn_enh_pred.py
@@ -48,4 +48,19 @@ Compute points of roc curves from a prediction file
 Visualize roc curves
 
 Testing data
-Testing data can be download from http://www.bdxconsult.com/enhancer.html   
+Testing data can be download from http://www.bdxconsult.com/enhancer.html
+
+Input data format
+1) RNN models
+Data files are tab delimited. Training and testing data should be in separate files and postive and negtive data should be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window.
+2) SVM and other ML models
+Data files are tab delimited. Training and testing data should be in separate files, but positive and negative data should be combined. The features of each enhancer/control have only one row.  The first column is 'class', where 0 indicates non-enhancer and 1 indicates enhancer. The subsequent columns contain the fold changes of Kmer at each nucleotide positon of the 200bp window in the order of 5mer, 7mer, 9mer and 11mer.
+
+Usage
+1) Train an RNN model for enhancer prediction (first make sure tensorflow is activated)
+
+2) Predict enhancers using an established RNN model
+
+3) Train multiple ML models for enhancer prediction
+
+4) Predict enhancers using linear SVM model
