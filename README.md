@@ -48,10 +48,10 @@ Compute points of roc curves from a prediction file
 2) **visualize.py**
 Visualize roc curves
 
-### Testing data
+## Input data
 Testing data can be download from http://www.bdxconsult.com/enhancer.html
 
-### Input data format
+### Data format
 1) **RNN models**
 Data files are tab delimited. Training and testing data should be in separate files and postive and negtive data should be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window. For example,
 ```
