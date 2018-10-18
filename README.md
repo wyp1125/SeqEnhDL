@@ -1,7 +1,8 @@
 # enhancer-prediction
 Multiple machine learning and deep learning models for kmer-based enhancer prediction. Usage of each program (excluding wrapper scripts) can be displayed by typing a command line without any option.
 
-### Data processing tools:
+## List of programs
+### Data preprocessing
 1) **mask_seq.pl**
 Mask DNA sequences - repeat sequences by 'N's, and other masked sequences by 'X's.
 2) **paral_mask_seq_hepg2.pl**
