@@ -178,3 +178,13 @@ rnn.enh.pred.data-00000-of-00001
 rnn.enh.pred.index
 rnn.enh.pred.meta
 ```
+### 2) rnn_enh_pred.py & linearSVM_enhancer.py
+These two programs will output a text file in the format:
+```
+True_class Nonenhancer_prob Enhancer_prob Predicted_class
+```
+### 3) multi_ml_enhancer.py
+This program will output the accuracy of the selected ML model
+```
+Classifier: Linear SVM, Accuracy: 0.908%
+```
