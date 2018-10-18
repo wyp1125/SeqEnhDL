@@ -71,7 +71,7 @@ Data files are tab delimited. Training and testing data should be in separate fi
 0    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    7mer_fold_change_nt1    ...    7mer_fold_change_nt200    ...    9mer_fold_change_nt1    ...    9mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
 ```
 
-### Usage
+## Usage
 1) **Train an RNN model for predicting enhancers** 
 
 First make sure tensorflow is activated
@@ -109,6 +109,6 @@ Command example:
 ```
 python3 rnn_enhancer.py -t1 data/hepg2.rnn.trn.pos.fea -t2 data/hepg2.rnn.trn.neg.fea -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred -s 1000
 ```
-2) Predict enhancers using an established RNN model
-3) Train multiple ML models for enhancer prediction
-4) Predict enhancers using linear SVM model
+2) **Predict enhancers using an established RNN model**
+3) **Train multiple ML models for enhancer prediction**
+4) **Predict enhancers using linear SVM model**
