@@ -160,3 +160,21 @@ Command example
 ```
 python3 linearSVM_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.pred.fea svm.enhancer.pred.outcome
 ```
+## Output
+### 1) rnn_enhancer.py
+This program will display accuracy during running
+```
+Step 1, Minibatch Loss= 0.6862, Training Accuracy= 0.553
+Step 200, Minibatch Loss= 0.5827, Training Accuracy= 0.691
+Step 400, Minibatch Loss= 0.5193, Training Accuracy= 0.729
+Step 600, Minibatch Loss= 0.4638, Training Accuracy= 0.793
+Step 800, Minibatch Loss= 0.3368, Training Accuracy= 0.855
+Step 1000, Minibatch Loss= 0.3348, Training Accuracy= 0.865
+```
+The program will also save the model in the user-specified path, including files
+```
+checkpoint
+rnn.enh.pred.data-00000-of-00001
+rnn.enh.pred.index
+rnn.enh.pred.meta
+```
