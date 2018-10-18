@@ -71,7 +71,12 @@ Data files are tab delimited. Training and testing data should be in separate fi
 ```
 
 ### Usage
-1) Train an RNN model for predicting enhancers (first make sure tensorflow is activated)
+1) **Train an RNN model for predicting enhancers** 
+First make sure tensorflow is activated
+```
+source ~/tensorflow/bin/activate
+```
+Use python3 to compile and run
 ```
 python3 rnn_enhancer.py [-h] -t1 POS_TRN -t2 NEG_TRN -p1 POS_PRED -p2 NEG_PRED
                        -m MODEL [-r RATE] [-s STEPS] [-b BATCH_SIZE]
