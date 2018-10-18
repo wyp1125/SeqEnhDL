@@ -6,10 +6,10 @@ import dataset
 import os,sys
 import argparse
 
-parser = argparse.ArgumentParser(description='Process input files and parameters.')
+parser = argparse.ArgumentParser(description='Predict enhancers based on a pre-saved RNN model.')
 parser.add_argument('-p1', '--pos_pred', type=str, required=True, help="positive prediction set")
 parser.add_argument('-p2', '--neg_pred', type=str, required=True, help="negative prediction set")
-parser.add_argument('-m', '--model', type=str, required=True, help="path of saved model ('.meta' file)")
+parser.add_argument('-m', '--model', type=str, required=True, help="path of pre-saved model ('.meta' file)")
 parser.add_argument('-o', '--outfile', type=str, required=True, help="output file")
 args = parser.parse_args()
 

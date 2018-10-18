@@ -110,5 +110,26 @@ Command example:
 python3 rnn_enhancer.py -t1 data/hepg2.rnn.trn.pos.fea -t2 data/hepg2.rnn.trn.neg.fea -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred -s 1000
 ```
 2) **Predict enhancers using an established RNN model**
+
+Use python3 to compile and run
+```
+python3 rnn_enh_pred.py [-h] -p1 POS_PRED -p2 NEG_PRED -m MODEL -o OUTFILE
+```
+Explanation of arguments:
+```
+  -h, --help            show this help message and exit
+  -p1 POS_PRED, --pos_pred POS_PRED
+                        positive prediction set
+  -p2 NEG_PRED, --neg_pred NEG_PRED
+                        negative prediction set
+  -m MODEL, --model MODEL
+                        path of pre-saved model ('.meta' file)
+  -o OUTFILE, --outfile OUTFILE
+                        output file
+```
+Command example:
+```
+aaa
+```
 3) **Train multiple ML models for enhancer prediction**
 4) **Predict enhancers using linear SVM model**
