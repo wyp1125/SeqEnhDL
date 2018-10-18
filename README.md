@@ -74,7 +74,7 @@ Data files are tab delimited. Training and testing data should be in separate fi
 ## Usage
 1) **Train an RNN model for predicting enhancers** 
 
-First make sure tensorflow is activated
+First make sure tensorflow is installed and  activated
 ```
 source ~/tensorflow/bin/activate
 ```
@@ -129,7 +129,20 @@ Explanation of arguments:
 ```
 Command example:
 ```
-aaa
+python3 rnn_enh_pred.py -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred.meta -o rnn.enhancer.pred.outcome
 ```
 3) **Train multiple ML models for enhancer prediction**
+First make sure sklearn library is installed. Use python3 to compile and run
+```
+python3 multi_ml_enhancer.py trn_data pre_data clsfr_ID
+```
+The following are links between classifier IDs and names
+```
+0    Linear SVM
+1    RBF SVM
+2    Decision Tree
+3    Random Forest
+4    AdaBoost
+5    Naive Bayes
+```
 4) **Predict enhancers using linear SVM model**
