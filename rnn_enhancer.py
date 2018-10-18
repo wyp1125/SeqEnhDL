@@ -6,7 +6,7 @@ import dataset
 import sys
 import argparse
 
-parser = argparse.ArgumentParser(description='Process input files and parameters.')
+parser = argparse.ArgumentParser(description='Train a kmer-based RNN model for predicting enhancers.')
 parser.add_argument('-t1', '--pos_trn', type=str, required=True, help="positive training set")
 parser.add_argument('-t2', '--neg_trn', type=str, required=True, help="negative training set")
 parser.add_argument('-p1', '--pos_pred', type=str, required=True, help="positive prediction set")

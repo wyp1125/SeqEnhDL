@@ -71,7 +71,33 @@ Data files are tab delimited. Training and testing data should be in separate fi
 ```
 
 ### Usage
-1) Train an RNN model for enhancer prediction (first make sure tensorflow is activated)
+1) Train an RNN model for predicting enhancers (first make sure tensorflow is activated)
+```
+python3 rnn_enhancer.py [-h] -t1 POS_TRN -t2 NEG_TRN -p1 POS_PRED -p2 NEG_PRED
+                       -m MODEL [-r RATE] [-s STEPS] [-b BATCH_SIZE]
+                       [-d DISPLAY_STEP]
+```
+Explanation of arguments:
+```
+  -h, --help            show this help message and exit
+  -t1 POS_TRN, --pos_trn POS_TRN
+                        positive training set
+  -t2 NEG_TRN, --neg_trn NEG_TRN
+                        negative training set
+  -p1 POS_PRED, --pos_pred POS_PRED
+                        positive prediction set
+  -p2 NEG_PRED, --neg_pred NEG_PRED
+                        negative prediction set
+  -m MODEL, --model MODEL
+                        path of saved model (folder + prefix)
+  -r RATE, --rate RATE  learning rate
+  -s STEPS, --steps STEPS
+                        number of steps
+  -b BATCH_SIZE, --batch_size BATCH_SIZE
+                        batch size
+  -d DISPLAY_STEP, --display_step DISPLAY_STEP
+                        display_step
+```
 2) Predict enhancers using an established RNN model
 3) Train multiple ML models for enhancer prediction
 4) Predict enhancers using linear SVM model
