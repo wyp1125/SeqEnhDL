@@ -72,6 +72,7 @@ Data files are tab delimited. Training and testing data should be in separate fi
 
 ### Usage
 1) **Train an RNN model for predicting enhancers** 
+
 First make sure tensorflow is activated
 ```
 source ~/tensorflow/bin/activate
