@@ -160,7 +160,7 @@ Command example
 ```
 python3 linearSVM_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.pred.fea svm.enhancer.pred.outcome
 ```
-## Output
+## Outputs
 ### 1) rnn_enhancer.py
 This program will display accuracy during running
 ```
