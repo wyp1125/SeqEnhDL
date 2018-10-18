@@ -132,6 +132,7 @@ Command example:
 python3 rnn_enh_pred.py -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred.meta -o rnn.enhancer.pred.outcome
 ```
 Note that in the case that true enhancers are unknown in the prediction datasets, a postive and a negative input files are still needed.
+
 3) **Train multiple ML models for enhancer prediction**
 First make sure sklearn library is installed. Use python3 to compile and run
 ```
