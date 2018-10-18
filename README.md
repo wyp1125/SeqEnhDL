@@ -1,6 +1,9 @@
 # enhancer-prediction
 Multiple machine learning and deep learning models for kmer-based enhancer prediction. Usage of each program (excluding wrapper scripts) can be displayed by typing a command line without any option.
 
+## Dependency
+python3, g++, perl, tensorflow, sklearn, numpy, pandas
+
 ## List of programs
 ### Data preprocessing
 1) **mask_seq.pl**
