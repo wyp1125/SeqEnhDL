@@ -131,6 +131,7 @@ Command example:
 ```
 python3 rnn_enh_pred.py -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred.meta -o rnn.enhancer.pred.outcome
 ```
+Note that in the case that true enhancers are unknown in the prediction datasets, a postive and a negative input files are still needed.
 3) **Train multiple ML models for enhancer prediction**
 First make sure sklearn library is installed. Use python3 to compile and run
 ```
@@ -145,4 +146,16 @@ The following are links between classifier IDs and names
 4    AdaBoost
 5    Naive Bayes
 ```
+Command example:
+```
+python3 multi_ml_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.pred.fea 0
+```
 4) **Predict enhancers using linear SVM model**
+Use python3 to compile and run
+```
+python3 linearSVM_enhancer.py trn_data pre_data output
+```
+Command example
+```
+python3 linearSVM_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.pred.fea svm.enhancer.pred.outcome
+```
