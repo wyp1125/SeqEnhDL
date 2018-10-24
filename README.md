@@ -56,7 +56,7 @@ Testing data can be download from http://www.bdxconsult.com/enhancer.html
 
 ### Data format
 1) **RNN models**
-Data files are tab delimited. Training and testing data should be in separate files and postive and negtive data should be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window. For example,
+Data files are tab delimited. Training and testing data should be in separate files and positive and negative data should also be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window. For example,
 ```
 enh_1    5mer_fold_change_nt1    5mer_fold_change_nt2    ...    5mer_fold_change_nt200
 ehn_1    7mer_fold_change_nt2    7mer_fold_change_nt2    ...    7mer_fold_change_nt200
@@ -68,7 +68,7 @@ enh_2    9mer_fold_change_nt1    9mer_fold_change_nt2    ...    9mer_fold_change
 ehn_2    11mer_fold_change_nt2    11mer_fold_change_nt2    ...    11mer_fold_change_nt200
 ```
 2) **SVM and other ML models**
-Data files are tab delimited. Training and testing data should be in separate files, but positive and negative data should be combined. The features of each enhancer/control have only one row.  The first column is 'class', where 0 indicates non-enhancer and 1 indicates enhancer. The subsequent columns contain the fold changes of Kmer at each nucleotide positon of the 200bp window in the order of 5mer, 7mer, 9mer and 11mer. For example,
+Data files are tab delimited. Training and testing data should be in separate files, but positive and negative data should be combined. The features of each enhancer/control have only one row.  The first column is 'class', where 0 indicates non-enhancer and 1 indicates enhancer. The subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window in the following order: 5mer, 7mer, 9mer and 11mer. For example,
 ```
 1    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    7mer_fold_change_nt1    ...    7mer_fold_change_nt200    ...    9mer_fold_change_nt1    ...    9mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
 0    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    7mer_fold_change_nt1    ...    7mer_fold_change_nt200    ...    9mer_fold_change_nt1    ...    9mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
@@ -134,10 +134,10 @@ Command example:
 ```
 python3 rnn_enh_pred.py -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred.meta -o rnn.enhancer.pred.outcome
 ```
-Note that in the case that true enhancers are unknown in the prediction datasets, a postive and a negative input files are still needed.
+Note that if true enhancers are unknown in the prediction datasets, a positive and a negative input files are still needed.
 
 3) **Train multiple ML models for enhancer prediction**
-First make sure sklearn library is installed. Use python3 to compile and run
+First make sure that the sklearn library is installed. Use python3 to compile and run
 ```
 python3 multi_ml_enhancer.py trn_data pre_data clsfr_ID
 ```
@@ -165,7 +165,7 @@ python3 linearSVM_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.pred.f
 ```
 ## Outputs
 ### 1) rnn_enhancer.py
-This program will display accuracy during running
+This program will display accuracy of the RNN model at evry display step
 ```
 Step 1, Minibatch Loss= 0.6862, Training Accuracy= 0.553
 Step 200, Minibatch Loss= 0.5827, Training Accuracy= 0.691
@@ -182,7 +182,7 @@ rnn.enh.pred.index
 rnn.enh.pred.meta
 ```
 ### 2) rnn_enh_pred.py & linearSVM_enhancer.py
-These two programs will output a text file in the format:
+These two programs will output a text file in the following format:
 ```
 True_class Nonenhancer_prob Enhancer_prob Predicted_class
 ```
