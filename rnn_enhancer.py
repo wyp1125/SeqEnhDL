@@ -6,7 +6,7 @@ import dataset
 import sys
 import argparse
 
-parser = argparse.ArgumentParser(description='Train a kmer-based RNN model for predicting enhancers.')
+parser = argparse.ArgumentParser(description='Process input files and parameters.')
 parser.add_argument('-t1', '--pos_trn', type=str, required=True, help="positive training set")
 parser.add_argument('-t2', '--neg_trn', type=str, required=True, help="negative training set")
 parser.add_argument('-p1', '--pos_pred', type=str, required=True, help="positive prediction set")
@@ -16,6 +16,7 @@ parser.add_argument('-r', '--rate', type=float, required=False, help="learning r
 parser.add_argument('-s', '--steps', type=int, required=False, help="number of steps")
 parser.add_argument('-b', '--batch_size', type=int, required=False, help="batch size")
 parser.add_argument('-d', '--display_step', type=int, required=False, help="display_step")
+parser.add_argument('-l', '--log', type=str, required=False, help="log file")
 
 args = parser.parse_args()
 data = dataset.read_train_sets(args.pos_trn, args.neg_trn, args.pos_pred, args.neg_pred)
@@ -101,22 +102,26 @@ with tf.Session() as sess:
 
     # Run the initializer
     sess.run(init)
-    for step in range(1, training_steps+1):
-        x_batch, y_true_batch, _, cls_batch = data.train.next_batch(batch_size)
-        x_valid_batch, y_valid_batch, _, valid_cls_batch = data.valid.next_batch(batch_size)
+    with open(args.log,'w') as log_fl:
+        for step in range(1, training_steps+1):
+            x_batch, y_true_batch, _, cls_batch = data.train.next_batch(batch_size)
+            x_valid_batch, y_valid_batch, _, valid_cls_batch = data.valid.next_batch(batch_size)
        
-        feed_dict_tr = {x: x_batch,
-                           y_true: y_true_batch}
-        feed_dict_val = {x: x_valid_batch,
-                              y_true: y_valid_batch}
+            feed_dict_tr = {x: x_batch,
+                               y_true: y_true_batch}
+            feed_dict_val = {x: x_valid_batch,
+                               y_true: y_valid_batch}
 
-        sess.run(optimizer, feed_dict=feed_dict_tr)
+            sess.run(optimizer, feed_dict=feed_dict_tr)
 
-        if step % display_step == 0 or step == 1:
-            # Calculate batch loss and accuracy
-            loss, acc = sess.run([cost, accuracy], feed_dict=feed_dict_val)
-            print("Step " + str(step) + ", Minibatch Loss= " + \
+            if step % display_step == 0 or step == 1:
+                # Calculate batch loss and accuracy
+                loss, acc = sess.run([cost, accuracy], feed_dict=feed_dict_val)
+                print("Step " + str(step) + ", Minibatch Loss= " + \
                   "{:.4f}".format(loss) + ", Training Accuracy= " + \
                   "{:.3f}".format(acc))
+                log_fl.write("Step " + str(step) + ", Minibatch Loss= " + \
+                  "{:.4f}".format(loss) + ", Training Accuracy= " + \
+                  "{:.3f}".format(acc) + "\n")                                          
     saver.save(sess, args.model) 
 
