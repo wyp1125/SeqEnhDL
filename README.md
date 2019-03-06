@@ -193,7 +193,7 @@ Classifier: Linear SVM, Accuracy: 0.908%
 ```
 
 ## Recent update
-### Incorporate with Keras and Tensorboard
+### enhancer_clsr_keras.py: Incorporation with Keras and Tensorboard
 ```
 python3 enhancer_clsr_keras.py [-h] -x1 TRNX -y1 TRNY -x2 TSTX -y2 TSTY [-r RATE] [-c EPOCHS] [-b BATCH_SIZE] [-l LOG]
 ```
@@ -201,3 +201,4 @@ Command example
 ```
 python3 enhancer_clsr_keras.py -x1 hepg2.trn.X -y1 hepg2.trn.Y -x2 hepg2.tst.X -y2 hepg2.tst.Y -l testlog
 ```
+Of note, 
