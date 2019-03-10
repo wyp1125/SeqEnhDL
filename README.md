@@ -52,10 +52,10 @@ Compute points of roc curves from a prediction file
 Visualize roc curves
 
 ## Input data
-Testing data can be download from http://www.bdxconsult.com/enhancer.html
+Testing data can be download from http://www.bdxconsult.com/SeqEnhRNN.html
 
 ### Data format
-1) **RNN models**
+1) **Binary RNN models (rnn_enhancer.py)**
 Data files are tab delimited. Training and testing data should be in separate files and positive and negative data should also be in separate files. The features of each enhancer/control have four rows, each row corresponding to a specific length of Kmer (i.e. 5, 7, 9 or 11). In each row, the first column is the enhancer/control ID, while the subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window. For example,
 ```
 enh_1    5mer_fold_change_nt1    5mer_fold_change_nt2    ...    5mer_fold_change_nt200
@@ -67,7 +67,15 @@ ehn_2    7mer_fold_change_nt2    7mer_fold_change_nt2    ...    7mer_fold_change
 enh_2    9mer_fold_change_nt1    9mer_fold_change_nt2    ...    9mer_fold_change_nt200
 ehn_2    11mer_fold_change_nt2    11mer_fold_change_nt2    ...    11mer_fold_change_nt200
 ```
-2) **SVM and other ML models**
+2) **3-class RNN models (rnn_enhancer_m.py)**
+A column which indicates class (0,1,2) should be inserted into the above format as the first column.
+```
+1    enh_1    5mer_fold_change_nt1    5mer_fold_change_nt2    ...    5mer_fold_change_nt200
+1    ehn_1    7mer_fold_change_nt2    7mer_fold_change_nt2    ...    7mer_fold_change_nt200
+1    enh_1    9mer_fold_change_nt1    9mer_fold_change_nt2    ...    9mer_fold_change_nt200
+1    ehn_1    11mer_fold_change_nt2    11mer_fold_change_nt2    ...    11mer_fold_change_nt200
+```
+3) **SVM and other ML models**
 Data files are tab delimited. Training and testing data should be in separate files, but positive and negative data should be combined. The features of each enhancer/control have only one row.  The first column is 'class', where 0 indicates non-enhancer and 1 indicates enhancer. The subsequent columns contain the fold changes of Kmer at each nucleotide position of the 200bp window in the following order: 5mer, 7mer, 9mer and 11mer. For example,
 ```
 1    5mer_fold_change_nt1    ...    5mer_fold_change_nt200    ...    7mer_fold_change_nt1    ...    7mer_fold_change_nt200    ...    9mer_fold_change_nt1    ...    9mer_fold_change_nt200    ...    11mer_fold_change_nt1    ...    11mer_fold_change_nt200
@@ -201,4 +209,15 @@ Command example
 ```
 python3 enhancer_clsr_keras.py -x1 hepg2.trn.X -y1 hepg2.trn.Y -x2 hepg2.tst.X -y2 hepg2.tst.Y -l testlog
 ```
-Of note, 
+Of note, the format of input data is different from that for rnn_enhancer.py and rnn_enhancer_m.py. Positive and negative features should be stored in one file while training and validation data are still separated. Class labels should be provided separately.
+Format for features
+```
+5mer_fc_nt1    7mer_fc_nt1    9mer_fc_nt1    11mer_fc_nt1    ...    5mer_fc_nt200    7mer_fc_nt200    9mer_fc_nt200    11mer_fc_nt200
+5mer_fc_nt1    7mer_fc_nt1    9mer_fc_nt1    11mer_fc_nt1    ...    5mer_fc_nt200    7mer_fc_nt200    9mer_fc_nt200    11mer_fc_nt200
+```
+Format for class labels
+```
+0    1
+1    0
+```
+Two perl programs "convert_2cls_data_for_keras.pl" and "convert_3cls_data_for_keras.pl" can be used to convert the input data of rnn_enhancer.py and rnn_enhancer_m.py to the new format.
