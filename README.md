@@ -209,7 +209,7 @@ Command example
 ```
 python3 enhancer_clsr_keras.py -x1 hepg2.trn.X -y1 hepg2.trn.Y -x2 hepg2.tst.X -y2 hepg2.tst.Y -l testlog
 ```
-Of note, the format of input data is different from that for rnn_enhancer.py and rnn_enhancer_m.py. Positive and negative features should be stored in one file while training and validation data are still separated. Class labels should be provided separately.
+Of note, the format of input data is different from that for "rnn_enhancer.py" and "rnn_enhancer_m.py". Positive and negative features should be stored in one file while training and validation data are still separated. Class labels should be provided separately.
 Format for features
 ```
 5mer_fc_nt1    7mer_fc_nt1    9mer_fc_nt1    11mer_fc_nt1    ...    5mer_fc_nt200    7mer_fc_nt200    9mer_fc_nt200    11mer_fc_nt200
