@@ -151,6 +151,7 @@ python3 rnn_enhancer_m.py [-h] -t1 POS_TRN -t2 NEG_TRN -v1 POS_VAL -v2 NEG_VAL
                          [-d DISPLAY_STEP]
 ```
 Compared to binary RNN models, an addition argument '-c' (number of classes) is needed.
+
 4) **Train multiple ML models for enhancer prediction**
 First make sure that the sklearn library is installed. Use python3 to compile and run
 ```
