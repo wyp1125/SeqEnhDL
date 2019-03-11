@@ -9,8 +9,8 @@ import argparse
 parser = argparse.ArgumentParser(description='Process input files and parameters.')
 parser.add_argument('-t1', '--pos_trn', type=str, required=True, help="positive training set")
 parser.add_argument('-t2', '--neg_trn', type=str, required=True, help="negative training set")
-parser.add_argument('-p1', '--pos_pred', type=str, required=True, help="positive validation set")
-parser.add_argument('-p2', '--neg_pred', type=str, required=True, help="negative validation set")
+parser.add_argument('-v1', '--pos_val', type=str, required=True, help="positive validation set")
+parser.add_argument('-v2', '--neg_val', type=str, required=True, help="negative validation set")
 parser.add_argument('-m', '--model', type=str, required=True, help="path of saved model (folder + prefix)")
 parser.add_argument('-r', '--rate', type=float, required=False, help="learning rate")
 parser.add_argument('-s', '--steps', type=int, required=False, help="number of steps")
@@ -19,7 +19,7 @@ parser.add_argument('-d', '--display_step', type=int, required=False, help="disp
 parser.add_argument('-l', '--log', type=str, required=False, help="log file")
 
 args = parser.parse_args()
-data = dataset.read_train_sets(args.pos_trn, args.neg_trn, args.pos_pred, args.neg_pred)
+data = dataset.read_train_sets(args.pos_trn, args.neg_trn, args.pos_val, args.neg_val)
 print(len(data.train.labels))
 print(len(data.valid.labels))
 

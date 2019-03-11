@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.svm import SVC
 
 if len(sys.argv)<4:
-    print("trn_data pre_data output")
+    print("trn_data val_data output")
     quit()
 
 clf = SVC(kernel="linear", C=0.025, probability=True)

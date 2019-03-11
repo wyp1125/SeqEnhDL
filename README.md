@@ -83,7 +83,7 @@ Data files are tab delimited. Training and testing data should be in separate fi
 ```
 
 ## Usage
-1) **Train an RNN model for predicting enhancers** 
+1) **Train an RNN model for identifying enhancers** 
 
 First make sure tensorflow is installed and  activated
 ```
@@ -91,7 +91,7 @@ source ~/tensorflow/bin/activate
 ```
 Use python3 to compile and run
 ```
-python3 rnn_enhancer.py [-h] -t1 POS_TRN -t2 NEG_TRN -p1 POS_PRED -p2 NEG_PRED
+python3 rnn_enhancer.py [-h] -t1 POS_TRN -t2 NEG_TRN -v1 POS_VAL -v2 NEG_VAL
                        -m MODEL [-r RATE] [-s STEPS] [-b BATCH_SIZE]
                        [-d DISPLAY_STEP]
 ```
@@ -102,9 +102,9 @@ Explanation of arguments:
                         positive training set
   -t2 NEG_TRN, --neg_trn NEG_TRN
                         negative training set
-  -p1 POS_PRED, --pos_pred POS_PRED
+  -p1 POS_VAL, --pos_val POS_VAL
                         positive prediction set
-  -p2 NEG_PRED, --neg_pred NEG_PRED
+  -p2 NEG_VAL, --neg_val NEG_VAL
                         negative prediction set
   -m MODEL, --model MODEL
                         path of saved model (folder + prefix)
@@ -118,7 +118,7 @@ Explanation of arguments:
 ```
 Command example:
 ```
-python3 rnn_enhancer.py -t1 data/hepg2.rnn.trn.pos.fea -t2 data/hepg2.rnn.trn.neg.fea -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.neg.fea -m model/rnn.enh.pred -s 1000
+python3 rnn_enhancer.py -t1 data/hepg2.rnn.trn.pos.fea -t2 data/hepg2.rnn.trn.neg.fea -v1 data/hepg2.rnn.val.pos.fea -v2 data/hepg2.rnn.val.neg.fea -m model/rnn.enh.pred -s 1000
 ```
 2) **Predict enhancers using an established RNN model**
 
@@ -144,10 +144,17 @@ python3 rnn_enh_pred.py -p1 data/hepg2.rnn.pred.pos.fea -p2 data/hepg2.rnn.pred.
 ```
 Note that if true enhancers are unknown in the prediction datasets, a positive and a negative input files are still needed.
 
-3) **Train multiple ML models for enhancer prediction**
+3) **Train an RNN model for classifying enhancers from two cell types and randomly selected sequences**
+```
+python3 rnn_enhancer_m.py [-h] -t1 POS_TRN -t2 NEG_TRN -v1 POS_VAL -v2 NEG_VAL
+                         -c NCLS -m MODEL [-r RATE] [-s STEPS] [-b BATCH_SIZE]
+                         [-d DISPLAY_STEP]
+```
+Compared to binary RNN models, an addition argument '-c' (number of classes) is needed.
+4) **Train multiple ML models for enhancer prediction**
 First make sure that the sklearn library is installed. Use python3 to compile and run
 ```
-python3 multi_ml_enhancer.py trn_data pre_data clsfr_ID
+python3 multi_ml_enhancer.py trn_data val_data clsfr_ID
 ```
 The following are links between classifier IDs and names
 ```
@@ -160,12 +167,12 @@ The following are links between classifier IDs and names
 ```
 Command example:
 ```
-python3 multi_ml_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.pred.fea 0
+python3 multi_ml_enhancer.py data/hepg2.svm.trn.10pct.fea data/hepg2.svm.val.fea 0
 ```
-4) **Predict enhancers using linear SVM model**
+5) **Predict enhancers using linear SVM model**
 Use python3 to compile and run
 ```
-python3 linearSVM_enhancer.py trn_data pre_data output
+python3 linearSVM_enhancer.py trn_data pred_data output
 ```
 Command example
 ```

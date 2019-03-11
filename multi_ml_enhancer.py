@@ -14,7 +14,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 
 if len(sys.argv)<4:
-    print("trn_data pre_data clsfr_ID")
+    print("trn_data val_data clsfr_ID")
     quit()
 
 clsr_names=["Linear SVM", "RBF SVM", "Decision Tree", "Random Forest", "AdaBoost","Naive Bayes"]
