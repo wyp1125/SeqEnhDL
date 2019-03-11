@@ -102,9 +102,9 @@ Explanation of arguments:
                         positive training set
   -t2 NEG_TRN, --neg_trn NEG_TRN
                         negative training set
-  -p1 POS_VAL, --pos_val POS_VAL
+  -v1 POS_VAL, --pos_val POS_VAL
                         positive prediction set
-  -p2 NEG_VAL, --neg_val NEG_VAL
+  -v2 NEG_VAL, --neg_val NEG_VAL
                         negative prediction set
   -m MODEL, --model MODEL
                         path of saved model (folder + prefix)
