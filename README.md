@@ -52,7 +52,7 @@ Compute points of roc curves from a prediction file
 Visualize roc curves
 
 ## Input data
-Testing data can be download from http://www.bdxconsult.com/SeqEnhRNN.html
+Testing data can be download from http://www.bdxconsult.com/SeqEnhRNN
 
 ### Data format
 1) **Binary RNN models (rnn_enhancer.py)**
