@@ -36,6 +36,8 @@ Randomly select a pre-defined proportion of samples from feature files.
 ### Enhancer classifiers
 1) **enhancer_clsr_keras.py**
 Train and test an RNN model of enhancer classifier.
+2) **enhancer_clsr_keras_auc.py**
+Train and test an RNN model of enhancer classifier with AUC computed.
 3) **multi_ml_enhancer.py**
 Train and test an enhancer classifier using a conventional machine learning model.
 4) **linearSVM_enhancer.py**
@@ -61,4 +63,4 @@ Format for class labels
 To know how to run each enhancer classifier program, users can just type "python3 program_name". For each program, four input files are required, including training features (trn*X), training labels (trn*Y), testing features (tst*X), testing lables (tst*Y). Users need to make sure these files are provided in the correct order or with right foregoing arguments.
 
 ## Output
-Accuracy and AUC will be printed after an enhancer classifier is successfully trained and tested.
+Accuracy (and AUC) will be printed after an enhancer classifier is successfully trained and tested.
