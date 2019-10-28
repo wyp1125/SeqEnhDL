@@ -9,7 +9,7 @@ python3, g++, perl, tensorflow, sklearn, numpy, pandas
 1) **mask_seq.pl**
 Mask regions of chromosomal sequences: repeat sequences by 'N's, and other masked sequences by 'X's.
 2) **paral_mask_seq_*.pl**
-Wrapper to run mask_seq.pl
+Wrapper to run mask_seq.pl.
 3) **divide_200bp.pl**
 Divide enhancer chromosomal positions to 210bp windows.
 4) **retrieve_sequence.pl**
@@ -29,20 +29,20 @@ Make cross-validation datasets for a pair of positive and negative fasta files. 
 11) **code_seq.pl**
 Transform DNA sequences (flattened fasta files) to kmer fold changes for deep learning, based on provided kmer dictionaries.
 12) **paral_code_seq*.pl**
-Wrapper to run code_seq.pl
+Wrapper to run code_seq.pl.
 13) **random_selection.py**
-Randomly select a pre-defined proportion of samples from feature files
+Randomly select a pre-defined proportion of samples from feature files.
 
 ### Enhancer classifiers
 1) **enhancer_clsr_keras.py**
-Train and test an RNN model of enhancer classifier
+Train and test an RNN model of enhancer classifier.
 3) **multi_ml_enhancer.py**
-Train and test an enhancer classifier using a conventional machine learning model
+Train and test an enhancer classifier using a conventional machine learning model.
 4) **linearSVM_enhancer.py**
-Train and test a linear SVM enhancer classifier
+Train and test a linear SVM enhancer classifier.
 
 ## Input data
-Testing data can be download from http://www.bdxconsult.com/SeqEnhRNN
+Testing data can be download from http://www.bdxconsult.com/SeqEnhRNN.
 
 ### Data format
 Positive and negative features should be stored in the same files and training and testing data should be separated. Class labels should be provided as dummy variables in separate files.
@@ -58,6 +58,7 @@ Format for class labels
 ```
 
 ## Usage
+To know how to run each enhancer classifier program, users can just type "python3 program_name". For each program, four input files are required, including training features (trn*X), training labels (trn*Y), testing features (tst*X), testing lables (tst*Y). Users need to make sure these files are provided in the correct order or with right foregoing arguments.
 
 ## Output
-Accuracy and AUC will be printed after an enhancer classifier is trained and tested.
+Accuracy and AUC will be printed after an enhancer classifier is successfully trained and tested.
