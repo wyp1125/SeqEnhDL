@@ -18,11 +18,11 @@ Retrieve DNA sequence given chromosomal positions.
 Filter out fastq sequence overlapped with any masked nucleotide, and generate GC content information for the kept sequences.
 6) **scan_sel_new.cc**
 Randomly select n-fold DNA sequences from the genome by matching given sequence lengths, repeat contents and CG contents in a feature file.
-7) **paral_scan_sel_new_ctl.pl**
+7) **paral_scan_sel_new_*.pl**
 Wrapper to run scan_sel_new.
 8) **get_kmer_dict.pl**
 Generate kmer dictionaries between kmers and fold-changes by comparing between positive and control sequences.
-9) **paral_get_kmer_dict*.pl**
+9) **paral_get_kmer_dict**
 Wrapper to run get_kmer_dict.pl.
 10) **make_fasta_cv.py**
 Make cross-validation datasets for a pair of positive and negative fasta files. Note that headers and their corresponding sequences are placed in the same lines in the output files.
