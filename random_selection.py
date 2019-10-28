@@ -1,20 +1,27 @@
 import sys
 import random
 if len(sys.argv)<4:
-    print("input output number/ratio")
+    print("input_x input_y output_x output_y number/ratio")
     quit()
 line=open(sys.argv[1],'r')
-data=[]
+data_x=[]
 for eachline in line:
-    data.append(eachline.strip())
-m=len(data)
-n=float(sys.argv[3])
+    data_x.append(eachline.strip())
+line=open(sys.argv[2],'r')
+data_y=[]
+for eachline in line:
+    data_y.append(eachline.strip())
+m=len(data_y)
+n=float(sys.argv[5])
 if n<=1.0:
    n=m*n
 n=int(n)
-ndata=random.sample(data,n)
-with open(sys.argv[2],'w') as of:
-    for eachline in ndata:
-        of.write(eachline+'\n')
+x=[i for i in range(0,m)]
+ndata=random.sample(x,n)
+with open(sys.argv[3],'w') as of1:
+  with open(sys.argv[4],'w') as of2:
+    for i in range(0,n):
+        of1.write(data_x[x[i]]+'\n')
+        of2.write(data_y[x[i]]+'\n')
 print(m)
 print(n)
