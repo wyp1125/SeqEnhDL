@@ -5,6 +5,7 @@ from keras.callbacks import ModelCheckpoint
 from keras.models import model_from_json,load_model
 import numpy as np
 import argparse
+from sklearn.utils import shuffle
 from sklearn.metrics import roc_curve
 from sklearn.metrics import auc
 parser = argparse.ArgumentParser(description='Process input files and parameters.')
@@ -37,17 +38,23 @@ if args.log:
         quit()
     log_file=args.log
 
-Xtrn=np.loadtxt(args.trnx)
-Xtrn_len=Xtrn.shape[0]
+Xall=np.loadtxt(args.trnx)
+Yall=np.loadtxt(args.trny)
+Xall,Yall=shuffle(Xall,Yall)
+Xall_len=Xall.shape[0]
+Xtrn_len=int(Xall_len*0.7+0.5)
+Xval_len=Xall_len-Xtrn_len
+Xtrn=Xall[:Xtrn_len,]
+Ytrn=Yall[:Xtrn_len,]
+Xval=Xall[Xtrn_len:,]
+Yval=Yall[Xtrn_len:,]
 Xtrn=Xtrn.reshape((Xtrn_len,200,4))
-
-Ytrn=np.loadtxt(args.trny)
+Xval=Xval.reshape((Xval_len,200,4))
 ncls=Ytrn.shape[1]
 
 Xtst=np.loadtxt(args.tstx)
 Xtst_len=Xtst.shape[0]
 Xtst=Xtst.reshape((Xtst_len,200,4))
-
 Ytst=np.loadtxt(args.tsty)
 
 model = keras.Sequential()
@@ -56,14 +63,16 @@ model.add(layers.Bidirectional(layers.LSTM(128)))
 model.add(layers.Dense(128, activation='relu'))
 model.add(layers.Dropout(0.5))
 model.add(layers.Dense(ncls, activation='softmax'))
-model.compile(optimizer=tf.train.AdamOptimizer(learning_rate),
+model.compile(optimizer=tf.optimizers.Adam(learning_rate),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 if saved_model=="":
-    model.fit(Xtrn, Ytrn, validation_data=(Xtst,Ytst), epochs=training_epochs, verbose=1, batch_size=batch_size)
+    model.fit(Xtrn, Ytrn, validation_data=(Xval,Yval), epochs=training_epochs, verbose=1, batch_size=batch_size)
+    score=model.evaluate(Xtst, Ytst, verbose=1)
+    print("%s: %.3f" % (model.metrics_names[1], score[1]))
 else:
     checkpoint = ModelCheckpoint(filepath=saved_model+'.h5', verbose=1, monitor='val_loss',save_best_only=True,save_weights_only=True)  
-    model.fit(Xtrn, Ytrn, validation_data=(Xtst,Ytst), epochs=training_epochs, verbose=1, callbacks=[checkpoint], batch_size=batch_size)
+    model.fit(Xtrn, Ytrn, validation_data=(Xval,Yval), epochs=training_epochs, verbose=1, callbacks=[checkpoint], batch_size=batch_size)
     model_json=model.to_json()
     with open(saved_model+'.json',"w") as of:
         of.write(model_json)
@@ -75,7 +84,7 @@ else:
            json_file.close() 
            loaded_model=model_from_json(loaded_model_json)
            loaded_model.load_weights(saved_model+'.h5')
-           loaded_model.compile(optimizer=tf.train.AdamOptimizer(learning_rate),
+           loaded_model.compile(optimizer=tf.optimizers.Adam(learning_rate),
                                 loss='categorical_crossentropy',
                                 metrics=['accuracy'])
            score=loaded_model.evaluate(Xtst, Ytst, verbose=1)
