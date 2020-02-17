@@ -1,7 +1,7 @@
 import sys
 import random
 if len(sys.argv)<4:
-    print("input_x input_y output_x output_y number/ratio")
+    print("input_x input_y output_x output_y number[ratio]")
     quit()
 line=open(sys.argv[1],'r')
 data_x=[]
@@ -17,11 +17,11 @@ if n<=1.0:
    n=m*n
 n=int(n)
 x=[i for i in range(0,m)]
-ndata=random.sample(x,n)
+sel=random.sample(x,n)
 with open(sys.argv[3],'w') as of1:
   with open(sys.argv[4],'w') as of2:
     for i in range(0,n):
-        of1.write(data_x[x[i]]+'\n')
-        of2.write(data_y[x[i]]+'\n')
+        of1.write(data_x[sel[i]]+'\n')
+        of2.write(data_y[sel[i]]+'\n')
 print(m)
 print(n)
