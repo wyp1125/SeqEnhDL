@@ -1,11 +1,14 @@
 import tensorflow as tf
 import keras
 from keras import layers
+from keras.layers import Conv2D, MaxPooling2D
 from keras.callbacks import ModelCheckpoint
 from keras.models import model_from_json,load_model
 import numpy as np
-from sklearn.utils import shuffle
 import argparse
+from sklearn.utils import shuffle
+from sklearn.metrics import roc_curve
+from sklearn.metrics import auc
 parser = argparse.ArgumentParser(description='Process input files and parameters.')
 parser.add_argument('-x1', '--trnx', type=str, required=True, help="training features")
 parser.add_argument('-y1', '--trny', type=str, required=True, help="training outcomes")
@@ -46,19 +49,22 @@ Xtrn=Xall[:Xtrn_len,]
 Ytrn=Yall[:Xtrn_len,]
 Xval=Xall[Xtrn_len:,]
 Yval=Yall[Xtrn_len:,]
-Xtrn=Xtrn.reshape((Xtrn_len,200,4))
-Xval=Xval.reshape((Xval_len,200,4))
+Xtrn=Xtrn.reshape((Xtrn_len,200,4,1))
+Xval=Xval.reshape((Xval_len,200,4,1))
 ncls=Ytrn.shape[1]
 
 Xtst=np.loadtxt(args.tstx)
 Xtst_len=Xtst.shape[0]
-Xtst=Xtst.reshape((Xtst_len,200,4))
+Xtst=Xtst.reshape((Xtst_len,200,4,1))
 Ytst=np.loadtxt(args.tsty)
 
+input_shape=(200,4,1)
 model = keras.Sequential()
-model.add(layers.Bidirectional(layers.LSTM(128)))
-#model.add(layers.Flatten())
-model.add(layers.Dense(128, activation='relu'))
+model.add(Conv2D(32, kernel_size=(4, 1), strides=(1, 1), activation='relu', input_shape=input_shape))
+model.add(MaxPooling2D(pool_size=(4, 1), strides=(4, 1)))
+model.add(Conv2D(64, kernel_size=(5, 1), strides=(1, 1),activation='relu'))
+model.add(MaxPooling2D(pool_size=(5, 1), strides=(5, 1)))
+model.add(layers.Flatten())
 model.add(layers.Dropout(0.5))
 model.add(layers.Dense(ncls, activation='softmax'))
 model.compile(optimizer=tf.optimizers.Adam(learning_rate),
@@ -87,3 +93,8 @@ else:
                                 metrics=['accuracy'])
            score=loaded_model.evaluate(Xtst, Ytst, verbose=1)
            of.write("%s: %.3f\n" % (loaded_model.metrics_names[1], score[1]))
+           Ypred=loaded_model.predict(Xtst).ravel()
+           fpr, tpr, threshold = roc_curve(Ytst.ravel(), Ypred)
+           auc_dnn = auc(fpr,tpr)
+           of.write("auc: %.3f\n" % (auc_dnn))
+
