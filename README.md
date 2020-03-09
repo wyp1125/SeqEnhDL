@@ -44,7 +44,7 @@ Train and test an enhancer classifier using a conventional machine learning mode
 Train and test a linear SVM enhancer classifier.
 
 ## Input data
-Testing data can be download from http://www.bdxconsult.com/SeqEnhRNN.
+Testing data can be download from http://www.bdxconsult.com/SeqEnhDL.
 
 ### Data format
 Positive and negative features should be stored in the same files and training and testing data should be separated. Class labels should be provided as dummy variables in separate files.
