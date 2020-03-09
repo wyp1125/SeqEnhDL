@@ -1,5 +1,5 @@
-# SeqEnhRNN
-Recurrent Neural Network (RNN) and SVM models for kmer-based enhancer classification. Utility programs for data processing are also provided. Usage of each program (excluding wrapper scripts) can be displayed by typing a command line without any option.
+# SeqEnhDL
+Deep learning and SVM models for kmer-based enhancer classification. Utility programs for data processing are also provided. Usage of each program (excluding wrapper scripts) can be displayed by typing a command line without any option.
 
 ## Dependency
 python3, g++, perl, tensorflow, sklearn, numpy, pandas
