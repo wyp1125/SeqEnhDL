@@ -34,14 +34,15 @@ Wrapper to run code_seq.pl.
 Randomly select a pre-defined proportion of samples from feature files.
 
 ### Enhancer classifiers
-1) **enhancer_clsr_keras.py**
+1) **SeqEnhMLP.py**
+Train and test a multi-layer perceptron model of enhancer classifier.
+2) **SeqEnhCNN.py**
+Train and test a CNN model of enhancer classifier.
+3) **SeqEnhRNN.py**
 Train and test an RNN model of enhancer classifier.
-2) **enhancer_clsr_keras_auc.py**
-Train and test an RNN model of enhancer classifier with AUC computed.
-3) **multi_ml_enhancer.py**
+4) **multi_ml_enhancer.py**
 Train and test an enhancer classifier using a conventional machine learning model.
-4) **linearSVM_enhancer.py**
-Train and test a linear SVM enhancer classifier.
+
 
 ## Input data
 Testing data can be download from http://www.bdxconsult.com/SeqEnhDL.
